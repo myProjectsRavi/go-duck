@@ -1,0 +1,56 @@
+name: Orchestrator Nightly
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: orchestrator-single
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Configure git
+        run: |
+          git config user.name "orchestrator-bot"
+          git config user.email "orchestrator-bot@users.noreply.github.com"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r orchestrator/requirements.txt
+      - name: Run orchestrator
+        env:
+          JULES_KEY_ARCH: ${{ secrets.JULES_KEY_ARCH }}
+          JULES_KEY_DEV: ${{ secrets.JULES_KEY_DEV }}
+          JULES_KEY_REVIEW: ${{ secrets.JULES_KEY_REVIEW }}
+          JULES_SOURCE: ${{ secrets.JULES_SOURCE }}
+          JULES_API_BASE: ${{ secrets.JULES_API_BASE }}
+          ORCH_MAX_POLL_MINUTES: 25
+          ORCH_POLL_SECONDS: 12
+          ORCH_RUN_MAX_MINUTES: 27
+          ORCH_MAX_ACTIVITY_PAGES: 20
+          ORCH_STATUS_MODE: artifact
+          ORCH_AUTO_MERGE: true
+          ORCH_MERGE_METHOD: squash
+          PRODUCT_PROMPT: ${{ inputs.product_prompt }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python -m orchestrator.run
+      - name: Upload status artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orchestrator-status-${{ github.run_id }}
+          path: status/*.json
+          if-no-files-found: warn
