@@ -1,44 +1,36 @@
-# offline-devs
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Three-agent Jules orchestration scaffold for:
-- Agent 1: Architect/BA
-- Agent 2: Full-stack developer
-- Agent 3: Senior code reviewer
+## Getting Started
 
-## Quick Start
-1. Add GitHub Actions secrets:
-   - `JULES_KEY_ARCH`
-   - `JULES_KEY_DEV`
-   - `JULES_KEY_REVIEW`
-   - `JULES_SOURCE`
-   - `JULES_API_BASE` (optional)
-2. Optional env var: `ORCH_STARTING_BRANCH` (defaults to `main`).
-3. To submit a product idea via comment, create an issue and comment with one of:
-   - `/agent1 ...` (replace backlog)
-   - `/agent1-append ...` (append enhancements)
-   - `/product ...`
-   - `/idea ...`
-4. Run the "Orchestrator" workflow with a product prompt, or use the comment intake.
-5. Track progress in `status/` and in GitHub Actions logs.
+First, run the development server:
 
-## Local Daytime Runs (to save Actions minutes)
-1. Copy `.env.local.example` to `.env.local` and fill in keys.
-2. Optionally put your long prompt in a file and set `ORCH_PROMPT_FILE=prompt.txt`.
-3. Optional: set `ORCH_AGENT1_MODE=append` for incremental enhancements.
-4. Optional: set `ORCH_AUTO_MERGE=true` and `ORCH_MERGE_METHOD=squash`.
-5. Run `scripts/run_local.sh`.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## Scheduled Runs (optional)
-`Orchestrator Nightly` is manual-only by default. Add a cron schedule in
-`.github/workflows/orchestrator-night.yml` if you want automatic runs.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Docs
-- `docs/REPORT.md`
-- `docs/RUNBOOK.md`
-- `docs/TEMPLATE_SETUP.md`
-- `docs/SETUP.md`
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Template Repo (one-click new products)
-1. Enable **Template repository** in GitHub settings for this repo.
-2. Click **Use this template** to create a new product repo.
-3. Add secrets and install the Jules GitHub App in the new repo.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
