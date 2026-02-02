@@ -2,40 +2,34 @@ version: 1
 items:
 - story: S1
   criteria:
-  - UI allows text input
-  - UI handles 'Enter' key submission
+  - Input box accepts text
+  - Enter key triggers action
 - story: S2
   criteria:
-  - Show 'Searching for X...' message
-  - Show 'Analyzing...' message
-  - Clear messages on completion
+  - Show 'Searching for X' message
+  - Show 'Analyzing' message
 - story: S3
   criteria:
-  - Query 'Google, Tesla' triggers separate calls
-  - Calls are executed sequentially, not in parallel
+  - Multi-ticker input results in sequential network requests
+  - No single request duration exceeds Vercel limit
 - story: S4
   criteria:
-  - Minimum 2-second delay between outgoing API requests
+  - Minimum 2s delay between sequential calls
 - story: S5
   criteria:
   - Uses duckduckgo-search library
   - Time parameter set to 'd' (day)
-  - Returns top 3 results
 - story: S6
   criteria:
-  - Uses trafilatura or readability-lxml
-  - Returns clean text string
-  - Returns error/skip if scraping fails
+  - Extracts body text
+  - Ignores ads/nav
+  - Handles blocking/errors by skipping
 - story: S7
   criteria:
-  - Uses TextBlob
-  - Returns Polarity score (-1 to +1)
-  - Maps score to Red/Green/Grey badge
+  - Returns polarity float
+  - Classifies as Red/Green/Neutral
 - story: S8
   criteria:
-  - Card shows Headline
-  - Card shows Source URL domain
-  - Card shows Sentiment color code
-- story: S9
-  criteria:
-  - Keywords like 'Revenue', 'Crash', 'Surge' are wrapped in <b> tags
+  - Displays headline
+  - Displays sentiment badge
+  - Bolds defined keywords

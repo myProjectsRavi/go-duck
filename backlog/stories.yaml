@@ -2,55 +2,49 @@ version: 1
 items:
 - id: S1
   feature: F1
-  title: Portfolio Ticker Input
+  title: User Query Input
   status: ready
-  description: As a user, I want a clean input field to type natural language queries
-    about my stock portfolio.
+  description: As a user, I want to input my portfolio tickers so the system knows
+    what to search for.
 - id: S2
   feature: F1
-  title: Visual Feedback System
+  title: Visual Feedback
   status: ready
-  description: As a user, I need visual cues ('Searching for Google...', 'Analyzing...')
+  description: As a user, I need to see status messages ('Searching...', 'Analyzing...')
     to know the system is active.
 - id: S3
   feature: F2
-  title: Client-Side Chaining
+  title: Sequential API Calls
   status: ready
-  description: As a developer, I need the frontend to parse queries and send sequential
-    API calls for each company to avoid timeouts.
+  description: As the frontend, I need to split the query and call the backend one
+    ticker at a time to prevent timeouts.
 - id: S4
   feature: F2
   title: Request Throttling
   status: ready
-  description: As a developer, I need a 2-second delay between requests to avoid IP
+  description: As the frontend, I must wait 2 seconds between requests to avoid IP
     blocking.
 - id: S5
   feature: F3
-  title: DuckDuckGo Search Integration
+  title: DDG Search Implementation
   status: ready
-  description: As the system, I need to search DDG for the last 24h of news for a
-    given keyword.
+  description: As the backend, I need to search DuckDuckGo for the last 24 hours of
+    news for a given ticker.
 - id: S6
   feature: F3
-  title: Content Extraction
+  title: Content Scraper
   status: ready
-  description: As the system, I need to scrape and extract main body text from search
-    results, handling errors gracefully.
+  description: As the backend, I need to extract the main text from the search results,
+    handling errors gracefully.
 - id: S7
   feature: F4
-  title: Sentiment Analysis
+  title: Sentiment Scoring
   status: ready
-  description: As the system, I need to assign a sentiment tag (Positive/Negative/Neutral)
-    based on text polarity.
+  description: As the backend, I need to score the extracted text from -1 to +1 using
+    TextBlob.
 - id: S8
   feature: F5
   title: News Card Display
   status: ready
-  description: As a user, I want to see a card with Headline, Source, Sentiment Badge,
-    and a snippet.
-- id: S9
-  feature: F5
-  title: Keyword Highlighting
-  status: ready
-  description: As a user, I want financial keywords in the snippet to be highlighted
-    in bold.
+  description: As a user, I want to see a summary card with headline, sentiment badge,
+    and highlighted snippets.

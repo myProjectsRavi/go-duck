@@ -3,25 +3,25 @@ items:
 - id: F1
   epic: E1
   title: Minimalist Chat UI
-  status: in_progress
-  description: Input interface and loading states.
+  status: ready
+  description: Input for portfolio tickers and visual feedback mechanism.
 - id: F2
   epic: E1
-  title: Request Orchestration
+  title: Client-Side Chaining Logic
   status: ready
-  description: Client-side chaining and throttling to manage Vercel limits.
+  description: Parses queries and sequences API calls to avoid timeouts.
 - id: F3
   epic: E2
-  title: Search & Extraction
+  title: Search and Extraction
   status: ready
-  description: DDG search and HTML content extraction.
+  description: DDG search integration and text extraction handling.
 - id: F4
   epic: E2
-  title: Sentiment & Analysis
+  title: Sentiment Analysis
   status: ready
-  description: Text analysis using deterministic libraries.
+  description: TextBlob integration for polarity scoring.
 - id: F5
   epic: E3
-  title: Result Presentation
+  title: Card Presentation
   status: ready
-  description: Visual formatting of analysis results.
+  description: UI components for news items and sentiment visualization.

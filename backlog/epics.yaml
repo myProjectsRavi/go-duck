@@ -3,13 +3,14 @@ items:
 - id: E1
   title: The Chat Interface (Frontend)
   status: planned
-  description: Clean, minimalist chat UI with visual feedback and client-side orchestration.
+  description: Clean, minimalist UI with client-side chaining for handling multi-ticker
+    queries.
 - id: E2
   title: The 'Scrape-and-Paste' Engine (Backend API)
   status: planned
-  description: Serverless functions for searching DDG, extracting content, and analyzing
-    sentiment.
+  description: Serverless backend to search DDG, extract text, and analyze sentiment
+    without persistent storage.
 - id: E3
   title: The Response Formatter
   status: planned
-  description: Presentation layer for news cards and keyword highlighting.
+  description: Display logic for news cards, sentiment badges, and keyword highlighting.

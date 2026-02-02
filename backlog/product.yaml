@@ -3,22 +3,22 @@ product:
   id: prod-001
   name: Zero-Scout
   owner: product-owner
-  vision: A lightweight, stateless web application acting as a real-time market intelligence
-    tool for retail investors using a 'Fire and Forget' model.
+  vision: A lightweight, stateless, 'Fire and Forget' market intelligence tool for
+    retail investors that scrapes open web news, analyzes sentiment using deterministic
+    NLP, and presents summaries, strictly adhering to zero-cost and zero-auth constraints.
   constraints:
-  - Zero INR Investment
   - Zero Auth
   - Zero Paid APIs
-  - Zero GenAI
+  - Zero Generative AI
   - Zero Infrastructure Cost
   rules:
-  - Vercel Hobby Tier Only
   - Client-Side Chaining for multiple tickers
-  - No Database
-  - No Paid APIs
+  - 2-second Throttle between requests
+  - Pin backend dependencies
   requirements:
-  - Next.js Frontend
-  - Python Serverless Backend
-  - DuckDuckGo Search
-  - TextBlob Sentiment
+  - Next.js (Frontend)
+  - Python Serverless (Backend)
+  - duckduckgo-search (Data)
+  - TextBlob (Sentiment)
+  - Vercel Hosting
   status: active
