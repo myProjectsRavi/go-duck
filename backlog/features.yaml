@@ -5,6 +5,7 @@ items:
   title: Minimalist Chat UI
   status: in_progress
   description: ChatGPT-like interface for ticker input and status updates.
+  agent2_session: sessions/17710627303124764461
 - id: F2
   epic: E1
   title: Client-Side Orchestration
