@@ -1,2 +1,27 @@
 version: 1
-items: []
+items:
+- id: F1
+  epic: E1
+  title: Minimalist Chat UI
+  status: ready
+  description: Input interface and loading states.
+- id: F2
+  epic: E1
+  title: Request Orchestration
+  status: ready
+  description: Client-side chaining and throttling to manage Vercel limits.
+- id: F3
+  epic: E2
+  title: Search & Extraction
+  status: ready
+  description: DDG search and HTML content extraction.
+- id: F4
+  epic: E2
+  title: Sentiment & Analysis
+  status: ready
+  description: Text analysis using deterministic libraries.
+- id: F5
+  epic: E3
+  title: Result Presentation
+  status: ready
+  description: Visual formatting of analysis results.

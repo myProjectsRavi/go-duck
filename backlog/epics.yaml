@@ -1,2 +1,15 @@
 version: 1
-items: []
+items:
+- id: E1
+  title: The Chat Interface (Frontend)
+  status: planned
+  description: Clean, minimalist chat UI with visual feedback and client-side orchestration.
+- id: E2
+  title: The 'Scrape-and-Paste' Engine (Backend API)
+  status: planned
+  description: Serverless functions for searching DDG, extracting content, and analyzing
+    sentiment.
+- id: E3
+  title: The Response Formatter
+  status: planned
+  description: Presentation layer for news cards and keyword highlighting.

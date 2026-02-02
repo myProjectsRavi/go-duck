@@ -1,2 +1,56 @@
 version: 1
-items: []
+items:
+- id: S1
+  feature: F1
+  title: Portfolio Ticker Input
+  status: ready
+  description: As a user, I want a clean input field to type natural language queries
+    about my stock portfolio.
+- id: S2
+  feature: F1
+  title: Visual Feedback System
+  status: ready
+  description: As a user, I need visual cues ('Searching for Google...', 'Analyzing...')
+    to know the system is active.
+- id: S3
+  feature: F2
+  title: Client-Side Chaining
+  status: ready
+  description: As a developer, I need the frontend to parse queries and send sequential
+    API calls for each company to avoid timeouts.
+- id: S4
+  feature: F2
+  title: Request Throttling
+  status: ready
+  description: As a developer, I need a 2-second delay between requests to avoid IP
+    blocking.
+- id: S5
+  feature: F3
+  title: DuckDuckGo Search Integration
+  status: ready
+  description: As the system, I need to search DDG for the last 24h of news for a
+    given keyword.
+- id: S6
+  feature: F3
+  title: Content Extraction
+  status: ready
+  description: As the system, I need to scrape and extract main body text from search
+    results, handling errors gracefully.
+- id: S7
+  feature: F4
+  title: Sentiment Analysis
+  status: ready
+  description: As the system, I need to assign a sentiment tag (Positive/Negative/Neutral)
+    based on text polarity.
+- id: S8
+  feature: F5
+  title: News Card Display
+  status: ready
+  description: As a user, I want to see a card with Headline, Source, Sentiment Badge,
+    and a snippet.
+- id: S9
+  feature: F5
+  title: Keyword Highlighting
+  status: ready
+  description: As a user, I want financial keywords in the snippet to be highlighted
+    in bold.

@@ -1,15 +1,24 @@
 version: 1
 product:
-  id: "prod-001"
-  name: "TBD"
-  owner: "product-owner"
-  vision: ""
+  id: prod-001
+  name: Zero-Scout
+  owner: product-owner
+  vision: A lightweight, stateless web application acting as a real-time market intelligence
+    tool for retail investors using a 'Fire and Forget' model.
   constraints:
-    - "zero infra"
-    - "zero INR"
-    - "fire and forget"
-  rules: []
-  requirements: []
-  status: "draft"
-  created_at: ""
-  updated_at: ""
+  - Zero INR Investment
+  - Zero Auth
+  - Zero Paid APIs
+  - Zero GenAI
+  - Zero Infrastructure Cost
+  rules:
+  - Vercel Hobby Tier Only
+  - Client-Side Chaining for multiple tickers
+  - No Database
+  - No Paid APIs
+  requirements:
+  - Next.js Frontend
+  - Python Serverless Backend
+  - DuckDuckGo Search
+  - TextBlob Sentiment
+  status: active
