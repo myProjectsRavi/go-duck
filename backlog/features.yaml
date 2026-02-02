@@ -3,25 +3,25 @@ items:
 - id: F1
   epic: E1
   title: Minimalist Chat UI
-  status: in_progress
-  description: Input for portfolio tickers and visual feedback mechanism.
+  status: ready
+  description: ChatGPT-like interface for ticker input and status updates.
 - id: F2
   epic: E1
-  title: Client-Side Chaining Logic
+  title: Client-Side Orchestration
   status: ready
-  description: Parses queries and sequences API calls to avoid timeouts.
+  description: Logic to parse queries and manage sequential API calls with throttling.
 - id: F3
   epic: E2
-  title: Search and Extraction
+  title: Search & Extraction
   status: ready
-  description: DDG search integration and text extraction handling.
+  description: Integration with DDG and content extraction libraries.
 - id: F4
   epic: E2
-  title: Sentiment Analysis
+  title: NLP Analysis
   status: ready
-  description: TextBlob integration for polarity scoring.
+  description: Sentiment scoring and content summarization.
 - id: F5
   epic: E3
-  title: Card Presentation
+  title: News Card UI
   status: ready
-  description: UI components for news items and sentiment visualization.
+  description: Components for displaying news items and highlights.
