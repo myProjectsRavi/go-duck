@@ -1,17 +1,17 @@
 version: 1
 items:
 - id: E1
-  title: The Chat Interface
+  title: The Chat Interface (Frontend)
   status: planned
-  description: A clean, minimalist frontend for user input, visual feedback, and client-side
-    request orchestration.
+  description: Minimalist UI for query input and client-side orchestration of API
+    requests.
 - id: E2
-  title: The Scrape-and-Paste Engine
+  title: The Scrape-and-Paste Engine (Backend API)
   status: planned
-  description: Backend logic to search DuckDuckGo, extract article content, and perform
-    deterministic NLP analysis.
+  description: Serverless Python API to search DuckDuckGo, extract content, and analyze
+    sentiment.
 - id: E3
   title: The Response Formatter
   status: planned
-  description: Presentation layer to display analyzed data in a digestible card format
-    with keyword highlighting.
+  description: Presentation layer for displaying analyzed news cards with specific
+    formatting.

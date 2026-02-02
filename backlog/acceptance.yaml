@@ -2,31 +2,31 @@ version: 1
 items:
 - story: S1
   criteria:
-  - System accepts natural language string
-  - System parses out distinct tickers/keywords
+  - UI has a clean input box centered on screen
+  - Display 'Searching for [Ticker]...' when request initiates
+  - Display 'Analyzing Sentiment...' during processing phase
+- story: S2
+  criteria:
+  - Input 'Google and Tesla' results in two distinct API calls
+  - Wait time of 2 seconds enforced between calls
+  - UI aggregates results as they arrive
 - story: S3
   criteria:
-  - Frontend sends separate API calls for each entity
-  - Calls are sequential, not parallel
+  - Backend receives 'q' parameter
+  - Uses duckduckgo-search with time='d'
+  - Returns list of top 3-5 URL results
 - story: S4
   criteria:
-  - Minimum 2-second delay between outgoing API requests
+  - Successfully parses main text from standard news sites
+  - Returns error or skips URL if scraping fails (403/404)
+  - Timeout safety (e.g., 5s max per URL)
 - story: S5
   criteria:
-  - Uses duckduckgo-search library
-  - Parameter time='d' is set
-  - Returns top 3 results
+  - Returns float score between -1.0 and 1.0
+  - Classifies as Positive (>0.1), Negative (<-0.1), or Neutral
+  - Includes a short extracted summary/snippet
 - story: S6
   criteria:
-  - Uses trafilatura or readability-lxml
-  - Gracefully handles blocked sites (skips to next)
-- story: S7
-  criteria:
-  - Uses TextBlob for polarity
-  - "Assigns \U0001F7E2 for positive, \U0001F534 for negative, \u26AA for neutral"
-- story: S8
-  criteria:
-  - Card displays Headline, Source URL, Sentiment Badge, Snippet
-- story: S9
-  criteria:
-  - Keywords like 'Revenue', 'Crash', 'Surge' are wrapped in bold tags
+  - Card shows Headline, Source, and Sentiment Icon (Red/Green/Gray)
+  - 'Snippet text bolds keywords: Revenue, Crash, Surge, Profit, Loss'
+  - Layout is responsive (mobile-friendly)

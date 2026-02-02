@@ -3,26 +3,25 @@ items:
 - id: F1
   epic: E1
   title: Minimalist Chat UI
-  status: in_progress
-  description: ChatGPT-like interface for ticker input and status updates.
-  agent2_session: sessions/17710627303124764461
+  status: ready
+  description: Input field and status indicators similar to ChatGPT.
 - id: F2
   epic: E1
-  title: Client-Side Orchestration
+  title: Client-Side Orchestrator
   status: ready
-  description: Logic to parse queries and manage sequential API calls with throttling.
+  description: Logic to parse natural language queries and chain API calls with throttling.
 - id: F3
   epic: E2
-  title: Search & Extraction
+  title: Search & Scrape Function
   status: ready
-  description: Integration with DDG and content extraction libraries.
+  description: Backend logic to fetch search results and extract article text.
 - id: F4
   epic: E2
-  title: NLP Analysis
+  title: Sentiment Analysis Engine
   status: ready
-  description: Sentiment scoring and content summarization.
+  description: NLP processing to assign polarity scores and summarization.
 - id: F5
   epic: E3
-  title: News Card UI
+  title: News Card Display
   status: ready
-  description: Components for displaying news items and highlights.
+  description: Component to render individual news items with highlights.

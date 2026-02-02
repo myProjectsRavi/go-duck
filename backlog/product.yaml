@@ -3,22 +3,21 @@ product:
   id: prod-001
   name: Zero-Scout
   owner: product-owner
-  vision: A stateless, fire-and-forget market intelligence tool that scrapes real-time
-    news, analyzes sentiment using deterministic NLP, and delivers a Red/Green summary
-    for retail investors without costs or logins.
+  vision: A lightweight, stateless, serverless market intelligence tool for retail
+    investors that scrapes, analyzes, and summarizes real-time financial news without
+    login or cost.
   constraints:
   - Zero Auth (Stateless)
-  - Zero Paid APIs (duckduckgo-search only)
-  - Zero Generative AI (No LLMs, use TextBlob/Sumy)
+  - Zero Paid APIs (DuckDuckGo only)
+  - Zero Generative AI (Deterministic NLP)
   - Zero Infrastructure Cost (Vercel Hobby Tier)
   rules:
-  - Client-Side Chaining must be used to avoid Vercel timeouts
-  - 2-second throttle between requests to prevent IP blocking
-  - Backend dependencies must be pinned to maintain scraper stability
+  - Use Client-Side Chaining to avoid timeouts
+  - Implement 2-second throttle between requests
+  - Pin dependencies to prevent library breakage
   requirements:
   - 'Frontend: Next.js + Tailwind CSS'
   - 'Backend: Python Serverless Functions'
   - 'Data: duckduckgo-search (time=''d'')'
-  - 'Extraction: trafilatura or readability-lxml'
-  - 'Analysis: TextBlob (Sentiment)'
+  - 'Analysis: TextBlob (Sentiment) + Sumy/LSA (Summarization)'
   status: active
