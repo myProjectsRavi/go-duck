@@ -1,0 +1,161 @@
+{
+  "product": {
+    "id": "prod-001",
+    "name": "Zero-Scout",
+    "owner": "product-owner",
+    "vision": "A lightweight, stateless web application designed to act as a real-time market intelligence tool for retail investors. Users can input natural language queries about their stock portfolio and receive instant news analysis without login.",
+    "constraints": ["Zero Auth", "Zero Paid APIs", "Zero Generative AI", "Zero Infrastructure Cost"],
+    "rules": [
+      "No database or user accounts.",
+      "Use duckduckgo-search with time='d'.",
+      "Use TextBlob for sentiment.",
+      "Run on Vercel Hobby Tier.",
+      "Client-Side Chaining for multiple tickers.",
+      "2-second throttle between requests."
+    ],
+    "requirements": [
+      "Next.js + Tailwind CSS Frontend",
+      "Python Serverless Functions Backend",
+      "Client-Side Chaining to avoid timeouts",
+      "Sentiment Analysis (Red/Green)",
+      "Keyword Highlighting"
+    ],
+    "status": "active"
+  },
+  "epics": [
+    {
+      "id": "E1",
+      "title": "The Chat Interface (Frontend)",
+      "status": "planned",
+      "description": "Clean, minimalist chat UI with visual feedback and client-side chaining for multi-ticker queries."
+    },
+    {
+      "id": "E2",
+      "title": "The Scrape-and-Paste Engine (Backend API)",
+      "status": "planned",
+      "description": "Serverless function to search DuckDuckGo, extract content, and analyze sentiment."
+    },
+    {
+      "id": "E3",
+      "title": "The Response Formatter",
+      "status": "planned",
+      "description": "Display news cards with headlines, sentiment badges, and keyword-highlighted snippets."
+    }
+  ],
+  "features": [
+    {
+      "id": "F1",
+      "epic": "E1",
+      "title": "UI & Input Handling",
+      "status": "ready",
+      "description": "Input field for tickers and visualization of search status."
+    },
+    {
+      "id": "F2",
+      "epic": "E1",
+      "title": "Client-Side Orchestration",
+      "status": "ready",
+      "description": "Logic to parse queries and chain API calls with throttling."
+    },
+    {
+      "id": "F3",
+      "epic": "E2",
+      "title": "Search & Extract API",
+      "status": "ready",
+      "description": "Python endpoint to fetch news from DDG and extract text."
+    },
+    {
+      "id": "F4",
+      "epic": "E2",
+      "title": "Sentiment Analysis Engine",
+      "status": "ready",
+      "description": "Analyze text polarity using TextBlob."
+    },
+    {
+      "id": "F5",
+      "epic": "E3",
+      "title": "News Card Display",
+      "status": "ready",
+      "description": "Frontend component to render news items with highlighting."
+    }
+  ],
+  "stories": [
+    {
+      "id": "S1",
+      "feature": "F1",
+      "title": "Minimalist Chat UI",
+      "status": "ready",
+      "description": "As a user, I want a clean chat-like interface to enter my query."
+    },
+    {
+      "id": "S2",
+      "feature": "F2",
+      "title": "Query Parsing & Chaining",
+      "status": "ready",
+      "description": "As a user, I want my multi-ticker query (e.g., 'Google, Tesla') to be split and processed sequentially."
+    },
+    {
+      "id": "S3",
+      "feature": "F3",
+      "title": "DDG Search Integration",
+      "status": "ready",
+      "description": "As the system, I need to search DDG for the last 24h news for a given term."
+    },
+    {
+      "id": "S4",
+      "feature": "F3",
+      "title": "Content Extraction",
+      "status": "ready",
+      "description": "As the system, I need to extract body text from search results, ignoring ads."
+    },
+    {
+      "id": "S5",
+      "feature": "F4",
+      "title": "Sentiment Scoring",
+      "status": "ready",
+      "description": "As the system, I need to assign a polarity score and tag (Positive/Negative/Neutral)."
+    },
+    {
+      "id": "S6",
+      "feature": "F5",
+      "title": "Result Cards with Highlighting",
+      "status": "ready",
+      "description": "As a user, I want to see news cards with bold financial keywords."
+    }
+  ],
+  "acceptance": [
+    {
+      "story": "S1",
+      "criteria": [
+        "UI resembles a chat interface.",
+        "Input field accepts text.",
+        "No login required."
+      ]
+    },
+    {
+      "story": "S2",
+      "criteria": [
+        "Query 'Google, Tesla' results in two separate sequences.",
+        "2-second delay between requests.",
+        "Visual feedback for each step."
+      ]
+    },
+    {
+      "story": "S3",
+      "criteria": [
+        "Uses duckduckgo-search library.",
+        "Parameter time='d' is used.",
+        "Handles connection errors gracefully."
+      ]
+    },
+    {
+      "story": "S5",
+      "criteria": [
+        "TextBlob is used for polarity.",
+        "Score > 0 is Green/Positive.",
+        "Score < 0 is Red/Negative.",
+        "Score 0 is Neutral."
+      ]
+    }
+  ]
+}
