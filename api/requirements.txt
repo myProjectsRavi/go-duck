@@ -1,5 +1,4 @@
 duckduckgo-search==7.5.5
 textblob
 trafilatura
-flask
 lxml_html_clean
