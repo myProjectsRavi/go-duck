@@ -157,6 +157,8 @@ def is_pr_merged(pr_url: str, token: str, api_base: str) -> bool:
 
 
 def merge_pr(pr_url: str, token: str, api_base: str, merge_method: str | None = None) -> dict[str, Any]:
+    if merge_method and merge_method not in {"merge", "squash", "rebase"}:
+        merge_method = None
     owner, repo, number = parse_pr_url(pr_url)
     url = f"{api_base.rstrip('/')}/repos/{owner}/{repo}/pulls/{number}/merge"
     headers = {

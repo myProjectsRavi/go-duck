@@ -378,7 +378,13 @@ def get_session_state(cfg: Config, session_name: str) -> str:
     return str(session.get("state") or session.get("status") or "UNKNOWN").upper()
 
 
-def run_agent2_fix(cfg: Config, pr_url: str, review: dict[str, Any], branch: str | None, run_deadline: float) -> None:
+def run_agent2_fix(
+    cfg: Config,
+    pr_url: str,
+    review: dict[str, Any],
+    branch: str | None,
+    run_deadline: float,
+) -> tuple[str, str]:
     prompt = build_agent2_fix_prompt(pr_url, review)
     client = JulesClient(cfg.require(cfg.key_dev, "JULES_KEY_DEV"), cfg.api_base)
     session = client.create_session(
@@ -390,9 +396,16 @@ def run_agent2_fix(cfg: Config, pr_url: str, review: dict[str, Any], branch: str
         require_plan_approval=cfg.require_plan_approval,
     )
     session_name = session_name_from(session)
+    log(f"Agent2 fix session: {session_name}")
     if cfg.require_plan_approval:
         client.approve_plan(session_name)
-    poll_for_session_completion(client, session_name, cfg, run_deadline)
+    state = poll_for_session_completion(client, session_name, cfg, run_deadline)
+    return state, session_name
+
+
+def resume_agent2_fix(cfg: Config, session_name: str, run_deadline: float) -> str:
+    client = JulesClient(cfg.require(cfg.key_dev, "JULES_KEY_DEV"), cfg.api_base)
+    return poll_for_session_completion(client, session_name, cfg, run_deadline)
 
 
 def run_agent3(
@@ -415,6 +428,7 @@ def run_agent3(
         require_plan_approval=cfg.require_plan_approval,
     )
     session_name = session_name_from(session)
+    log(f"Agent3 session: {session_name}")
     if cfg.require_plan_approval:
         client.approve_plan(session_name)
     return poll_for_review(client, session_name, cfg, run_deadline)
@@ -470,14 +484,32 @@ def main() -> int:
         feature_id = feature.get("id")
         pr_url = feature.get("pr_url")
         agent2_session = feature.get("agent2_session")
+        agent2_fix_session = feature.get("agent2_fix_session")
         log(f"Processing feature {feature_id}")
         if (
             feature.get("status") == "review"
-            and str(feature.get("review_verdict", "")).upper() == "PASS"
+            and normalize_verdict(str(feature.get("review_verdict", ""))) == "PASS"
             and pr_url
         ):
             handle_passed_review(cfg, store, root, feature_id, pr_url)
             return 0
+        if (
+            feature.get("status") == "review"
+            and normalize_verdict(str(feature.get("review_verdict", ""))) == "NEEDS_CHANGES"
+            and agent2_fix_session
+        ):
+            fix_state = resume_agent2_fix(cfg, agent2_fix_session, run_deadline)
+            if fix_state != "COMPLETED":
+                store.update_feature_fields(
+                    feature_id,
+                    status="review",
+                    agent2_fix_session=agent2_fix_session,
+                    agent2_fix_state=fix_state,
+                )
+                store.save_all()
+                write_status(root, store, feature_id, notes="Agent2 fix pending")
+                commit_backlog(cfg, f"backlog: fix pending {feature_id}")
+                return 0
         if feature.get("status") != "review":
             store.update_feature_status(feature_id, "in_progress")
             store.save_all()
@@ -534,7 +566,18 @@ def main() -> int:
 
         if verdict == "NEEDS_CHANGES":
             log("Reviewer requested changes")
-            run_agent2_fix(cfg, pr_url, review, pr_info.get("head_ref"), run_deadline)
+            fix_state, fix_session = run_agent2_fix(cfg, pr_url, review, pr_info.get("head_ref"), run_deadline)
+            store.update_feature_fields(
+                feature_id,
+                status="review",
+                agent2_fix_session=fix_session,
+                agent2_fix_state=fix_state,
+            )
+            store.save_all()
+            commit_backlog(cfg, f"backlog: fix session {feature_id}")
+            if fix_state != "COMPLETED":
+                write_status(root, store, feature_id, notes="Agent2 fix pending")
+                return 0
             review = run_agent3(cfg, pr_url, feature, stories, acceptance, pr_info.get("head_ref"), run_deadline)
             verdict = normalize_verdict(str(review.get("verdict", "")))
 
