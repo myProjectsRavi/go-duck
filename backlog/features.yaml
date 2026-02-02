@@ -5,6 +5,7 @@ items:
   title: Minimalist Chat UI
   status: in_progress
   description: Input field and status indicators similar to ChatGPT.
+  agent2_session: sessions/8384954518624805951
 - id: F2
   epic: E1
   title: Client-Side Orchestrator
